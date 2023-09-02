@@ -1,0 +1,17 @@
+model Repressilator
+    species A, B, C;
+
+    k1 = 1; k2 = 1; k3 = 1; k4 = 0.1; k5 = 0.1; k6 = 0.1; n = 2;
+
+    R1: -> A; k1 / (1 + C^n);
+    R2: -> B; k2 / (1 + A^n);
+    R3: -> C; k3 / (1 + B^n);
+    R4: A -> ; k4 * A;
+    R5: B -> ; k5 * B;
+    R6: C -> ; k6 * C;
+
+    // initial conditions set to zero and are varied during the simulation
+    A = 0;
+    B = 0;
+    C = 0;
+end

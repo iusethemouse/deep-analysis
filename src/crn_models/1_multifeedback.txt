@@ -1,0 +1,24 @@
+model Multifeedback
+    species A, B, C, D;
+
+    // production and degradation rates
+    k1 = 1.5; k2 = 2.2; k3 = 1.8; k4 = 2.5; k5 = 0.04; k6 = 0.03; k7 = 0.05; k8 = 0.03;
+    
+    // activation and inhibition constants
+    K1 = 15; K2 = 20; K3 = 10; K4 = 12; K5 = 18; K6 = 25; K7 = 20;
+
+    R1: -> A; k1 * A / (K1 + A) * (1 / (1 + C/K2));
+    R2: -> B; k2 * A / (K2 + A) * (1 / (1 + D/K3));
+    R3: -> C; k3 * B / (K4 + B) * (1 / (1 + C/K5));
+    R4: -> D; k4 * C / (K6 + C) * (1 / (1 + A/K7));
+    R5: A -> ; k5 * A;
+    R6: B -> ; k6 * B;
+    R7: C -> ; k7 * C;
+    R8: D -> ; k8 * D;
+
+    // initial conditions set to zero and are varied during the simulation
+    A = 0;
+    B = 0;
+    C = 0;
+    D = 0;
+end
